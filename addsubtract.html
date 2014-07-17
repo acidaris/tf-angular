@@ -1,0 +1,123 @@
+<head>
+    <style type="text/css">
+        div#container {
+            background-color: white;
+            height: 200px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        div#container div {
+            padding: 5px;
+        }
+        div#container div.validation-error {
+            padding: 0;
+            color: red;
+        }
+        body {
+            background-color: darkgray;
+        }
+        footer {
+            height: 50px
+        }
+        header {
+            height: 50px
+        }
+    </style>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script>
+        $(function () {
+            $('#plus').click(function () {
+                performOperation('plus');
+            });
+            $('#minus').click(function () {
+                performOperation('minus');
+            });
+
+        });
+
+        function performOperation ( action ) {
+            if (action === 'plus' || action === 'minus') {
+
+                var xfield = $('#x-value');
+                var yfield = $('#y-value');
+
+                var xvalue = xfield.val();
+                var yvalue = yfield.val();
+
+                var xvalid = validateInteger(xvalue, xfield);
+                var yvalid = validateInteger(yvalue, yfield);
+
+                if (xvalid && yvalid) {
+                    var result;
+                    switch (action) {
+                        case 'plus':
+                            result = +xvalue + +yvalue;
+                            break;
+                        case 'minus':
+                            result = xvalue - yvalue;
+                            break;
+                    }
+
+                    $('#result').text("X " + action + " Y is " + result);
+
+                } else {
+                    $('#result').text("");
+                }
+
+            }
+        }
+
+        function validateInteger ( value, field ) {
+            clearValidationError(field);
+
+            if (isInteger(value)) {
+                return true;
+            } else {
+                addValidationError(field);
+                return false;
+            }
+        }
+
+        function clearValidationError ( field ) {
+            getValidationErrorField(field).text("");
+
+        }
+        function addValidationError ( field ) {
+            getValidationErrorField(field).text("The above field is not an integer.");
+        }
+        function getValidationErrorField ( field ) {
+            return field.parents('div.value-input').children('.validation-error');
+        }
+        function isInteger ( value ) {
+            return ((value.length > 0) && (!isNaN(value)) && (Math.floor(value) == value));
+        }
+    </script>
+</head>
+<body>
+<header></header>
+<div align="center" id="container">
+    <h1>Adder/Subtractor</h1>
+
+    <div class="value-input" id="xvar">
+        <label>X=
+            <input id="x-value" placeholder="Enter an Integer" class="integer-input" type="text"/>
+        </label>
+
+        <div class="validation-error"></div>
+    </div>
+    <div class="value-input" id="yvar">
+        <label>Y=
+            <input id="y-value" placeholder="Enter an Integer" class="integer-input" type="text"/>
+        </label>
+
+        <div class="validation-error"></div>
+    </div>
+    <div id="buttons">
+        <input id="plus" type="button" value="+"/>
+        <input id="minus" type="button" value="-"/>
+    </div>
+    <div id="result"></div>
+</div>
+<footer></footer>
+</body>
+
