@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+<head>
+    <script type="text/javascript" src="../js/angular.min.js"></script>
+</head>
+<body>
+<form ng-controller="FormCtrl" ng-submit="submit()" name="myForm" novalidate>
+    <label for="country">Country</label>
+    <select name="country" ng-model="data.country" ng-options="country for country in ['Antigua', 'Aruba', 'Burundi', 'Brunei']">...</select><br>
+    <label for="title">Title</label>
+    <input type="text" name="title" ng-model="data.title" placeholder="Enter a title"/><br>
+    <label for="confirm">Confirm</label>
+    <input type="checkbox" name="confirm" ng-model="data.confirm"/><br>
+    <label for="male">Male</label>
+    <input type="radio" name="gender" ng-model="data.gender" value="male"/>
+    <label for="female">Female</label>
+    <input type="radio" name="gender" ng-model="data.gender" value="female"/><br>
+    <label for="about_me">About Me</label>
+    <textarea ng-model="data.about_me" name="about_me"></textarea><br>
+    <label for="excitement">Excitement Level</label>
+    <input type="range" ng-model="data.excitement" name="excitement"/><br>
+    <input type="submit" value="submit"/>
+</form>
+<div>
+    <h1>Results</h1>
+
+    <p>Country: {{ data.country }}</p>
+
+    <p>Title: {{ data.title }}</p>
+
+    <p>Confirm: {{ data.confirm }}</p>
+
+    <p>Gender: {{ data.gender }}</p>
+
+    <p>About Me: {{ data.about_me }}</p>
+
+    <p>Excitement: {{ data.excitement }}</p>
+</div>
+<script src="../js/basicValidation.js"></script>
+</body>
+</html>
