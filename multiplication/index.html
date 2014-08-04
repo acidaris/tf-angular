@@ -5,18 +5,34 @@
     <title>Multiplication Table</title>
     <script type="text/javascript" src="../js/angular.min.js"></script>
     <style type="text/css">
+        td {
+            border: 1px solid #ddd;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            vertical-align: middle;
+        }
 
+        .hover {
+            background-color: orange;
+            color: white;
+        }
     </style>
 </head>
 <body ng-app="myApp">
-<table ng-controller="MultiplicationCtrl" initial-number-limit="12">
-    <tr ng-repeat="numberA in numbers">
-        <td ng-repeat="numberB in numbers">
-            {{ multiply(numberA,numberB) }}
-        </td>
-    </tr>
-</table>
-
+<div ng-controller="MultiplicationCtrl" initial-number-limit="10">
+    <input type="number" ng-model="numberLimit" placeholder="Enter a number"/>
+    <table>
+        <tr ng-repeat="numberA in numbers">
+            <td ng-repeat="numberB in numbers"
+                ng-mouseleave="clearActiveFactors()"
+                ng-mouseover="setActiveFactors(numberA, numberB)"
+                ng-class="{hover: matchesFactor(numberA, numberB)}">
+                {{ multiply(numberA,numberB) }}
+            </td>
+        </tr>
+    </table>
+</div>
 <script type="text/javascript" src="../js/multiplication.js"></script>
 </body>
 </html>
