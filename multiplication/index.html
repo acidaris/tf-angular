@@ -9,10 +9,10 @@
     </style>
 </head>
 <body ng-app="myApp">
-<table ng-controller="MultiplicationCtrl">
+<table ng-controller="MultiplicationCtrl" initial-number-limit="12">
     <tr ng-repeat="numberA in numbers">
         <td ng-repeat="numberB in numbers">
-            {{ numberA * numberB }}
+            {{ multiply(numberA,numberB) }}
         </td>
     </tr>
 </table>
