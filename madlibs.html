@@ -1,6 +1,7 @@
 <head>
     <title>ngMadLibs</title>
     <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/madlibs.js"></script>
     <style type="text/css">
         div#content {
             width: 800px;
@@ -24,7 +25,7 @@
             float: left;
             width: 593px;
             text-align: center;
-            border-bottom:2px solid;
+            border-bottom: 2px solid;
         }
         header section {
             height: 201px;
@@ -37,12 +38,17 @@
             text-decoration: underline;
             font-weight: bold;
         }
-        div.input-fields
-        {
-            float:left;
-            width:33%;
+        div.input-fields {
+            float: left;
+            width: 33%;
         }
         input[type=text] {
+            width: 150px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        select {
             width: 150px;
             display: block;
             margin-left: auto;
@@ -58,8 +64,8 @@
         }
     </style>
 </head>
-<body ng-app="">
-<div id="content">
+<body ng-app="myApp">
+<div ng-controller="madlibs" id="content">
     <header>
         <section id="icon"></section>
         <section id="title">
@@ -71,6 +77,11 @@
     </header>
     <section id="inputs">
         Provide the following words:
+        <select ng-model="gender">
+            <option value="">Select Gender</option>
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+        </select>
         <br/>
 
         <div class="input-fields">
@@ -92,17 +103,17 @@
     <section id="display">
         <p>
             <span class="replace">{{femaleName || "\{\{female name\}\}"}}</span> was a
-            <span class="replace">{{jobTitle || "\{\{job title\}\}"}}</span> who loved technology. Although she loved parts of her job, she absolutely hated
+            <span class="replace">{{jobTitle || "\{\{job title\}\}"}}</span> who loved technology. Although {{gender=='male'?'he':'she'}} loved parts of {{gender=='male'?'his':'her'}} job, {{gender=='male'?'he':'she'}} absolutely hated
             <span class="replace">{{tediousTask || "\{\{tedious task\}\}"}}</span> and
             <span class="replace">{{dirtyTask || "\{\{dirty task\}\}"}}</span>. So,
-            <span class="replace">{{femaleName || "\{\{female name\}\}"}}</span> met with her life mentor
-            <span class="replace">{{celebrity || "\{\{celebrity\}\}"}}</span> who told her to learn how to
+            <span class="replace">{{femaleName || "\{\{female name\}\}"}}</span> met with {{gender=='male'?'his':'her'}} life mentor
+            <span class="replace">{{celebrity || "\{\{celebrity\}\}"}}</span> who told {{gender=='male'?'him':'her'}} to learn how to
             <span class="replace">{{uselessSkill || "\{\{useless skill\}\}"}}</span> with Thinkful. Thinkful didn't offer a course on
-            <span class="replace">{{uselessSkill || "\{\{useless skill\}\}"}}</span> so she studied programming instead.
+            <span class="replace">{{uselessSkill || "\{\{useless skill\}\}"}}</span> so {{gender=='male'?'he':'she'}} studied programming instead.
         </p>
 
         <p>
-            What a great decision! With her new skills,
+            What a great decision! With {{gender=='male'?'his':'her'}} new skills,
             <span class="replace">{{femaleName || "\{\{female name\}\}"}}</span> built a(n)
             <span class="replace">{{adjective || "\{\{adjective\}\}"}}</span> robot named
             <span class="replace">{{obnoxiousCelebrity || "\{\{obnoxious celebrity\}\}"}}</span> that not only loved
