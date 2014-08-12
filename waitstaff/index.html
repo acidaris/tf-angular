@@ -1,0 +1,144 @@
+<head>
+    <title>Waiter Earnings Calculator</title>
+    <script type="text/javascript" src="../js/angular.min.js"></script>
+    <style type="text/css">
+        div#content > h1 {
+            text-align: center;
+        }
+        div#content {
+            width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 50px;
+            overflow: auto;
+        }
+        div#content > section {
+            padding :10px;
+            border: 2px solid;
+        }
+        section#meal-details {
+            width: 300px;
+            height: 222px;
+            float: left;
+        }
+        section#earnings-info, section#customer-charges {
+            margin-left: auto;
+            width: 200px;
+            float: right;
+        }
+
+        section#earnings-info {
+            margin-top: 20px;
+        }
+        td.label, td.unit{
+            text-align: right;
+        }
+        td.unit {
+            font-size: 15pt;
+        }
+
+        header {
+            border-bottom: 2px solid;
+            text-align: center;
+        }
+
+        div#buttons {
+            text-align: center;
+            margin: 10px;
+            margin-top: 50px;
+        }
+
+        table{
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        div#reset-btn
+        {
+            float:right;
+        }
+
+        body
+        {
+            width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+    </style>
+</head>
+<body ng-app="waitStaff">
+<div id="content">
+    <h1>Waitstaff Calculator</h1>
+    <section id="meal-details">
+        <header>Enter the Meal Details</header>
+        <form name="details" ng-controller="mealDetails" ng-submit="recordDetails()" novalidate>
+            <table>
+                <tr class="input-field">
+                    <td class="label">Base Meal Price:</td>
+                    <td class="unit">$</td>
+                    <td class="field">
+                        <input placeholder="0.00" type="number" required name="mealBase" ng-model="mealBase"/>
+                    </td>
+                </tr>
+                <tr class="input-field">
+                    <td class="label">Tax Rate:</td>
+                    <td class="unit">%</td>
+                    <td class="field">
+                        <input type="number" placeholder="0" required ng-model="taxRate"/>
+                    </td>
+                </tr>
+                <tr class="input-field">
+                    <td class="label">Tip Percentage:</td>
+                    <td class="unit">%</td>
+                    <td class="field">
+                        <input type="number" placeholder="0" required ng-model="tipPercent"/>
+                    </td>
+                </tr>
+            </table>
+            <div id="buttons">
+                <input type="submit" value="Submit"/>
+                <input type="button" ng-click="clearFields()" value="Cancel"/>
+            </div>
+        </form>
+    </section>
+    <section id="customer-charges" ng-controller="customerCharges">
+        <header>Customer Charges</header>
+        <table>
+            <tr>
+                <td class="label">subtotal</td>
+                <td>{{subtotal | currency}}</td>
+            </tr>
+            <tr>
+                <td class="label">tip</td>
+                <td>{{tip | currency}}</td>
+            </tr>
+            <tr>
+                <td class="label">total</td>
+                <td>{{total | currency}}</td>
+            </tr>
+        </table>
+    </section>
+    <section id="earnings-info" ng-controller="myEarningInfo">
+        <header>My Earnings Info</header>
+        <table>
+            <tr>
+                <td class="label">Tip Total:</td>
+                <td>{{tipTotal | currency}}</td>
+            </tr>
+            <tr>
+                <td class="label">Meal Count:</td>
+                <td>{{mealCount | number}}</td>
+            </tr>
+            <tr>
+                <td class="label">Average Tip Per Meal:</td>
+                <td>{{tipTotal/mealCount | currency}}</td>
+            </tr>
+        </table>
+    </section>
+</div>
+<div id="reset-btn" ng-controller="resetCtrl">
+    <input type="button" ng-click="reset()" value="Reset"/>
+</div>
+<script type="text/javascript" src="js/WaitStaff.js"></script>
+</body>
