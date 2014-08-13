@@ -7,9 +7,11 @@ angular.module("waitStaff", [])
 
 			$scope.recordDetails = function () {
 				if ($scope.details.$valid) {
+
+					var subtotal = $scope.mealBase + ($scope.mealBase * $scope.taxRate / 100);
+
 					var data = {
-						base : $scope.mealBase,
-						taxPercent : $scope.taxRate,
+						subtotal: subtotal,
 						tipPercent : $scope.tipPercent
 					};
 					$rootScope.$broadcast('mealSubmitted', data);
@@ -45,7 +47,7 @@ angular.module("waitStaff", [])
 
 			$scope.$on('mealSubmitted', function ( event, data ) {
 
-				var subTotal = calculateSubTotal(data.base, data.taxPercent);;
+				var subTotal = data.subtotal;
 				var tip = subTotal * data.tipPercent / 100;
 				var total = subTotal + tip;
 
@@ -77,9 +79,8 @@ angular.module("waitStaff", [])
 
 			$scope.$on('mealSubmitted', function ( event, data ) {
 
-				var subTotal = calculateSubTotal(data.base,data.taxPercent);
 
-				$scope.tipTotal += subTotal * data.tipPercent / 100;
+				$scope.tipTotal += data.subtotal * data.tipPercent / 100;
 				$scope.mealCount++;
 
 			});
@@ -96,9 +97,4 @@ angular.module("waitStaff", [])
 
 		})
 ;
-
-function calculateSubTotal(base,taxPercent)
-{
-	return base + (base * taxPercent / 100);
-}
 
