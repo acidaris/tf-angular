@@ -18,49 +18,30 @@ angular.module("myApp", []).controller("madlibs", function ( $scope ) {
 		$scope.obnoxiousCelebrity = '';
 		$scope.hugeNumber = '';
 		$scope.adjective = '';
+		$scope.gender='';
 	};
 
 	$scope.clearErrors = function () {
 
 	};
 
-	$scope.generateMadLib = function ( form ) {
+	$scope.generateMadLib = function () {
 
 		$scope.invalidHugeNumber = false;
 
-		$scope.madlibFields = form;
-
-		if (form.$valid) {
-			$scope.copyFromForm(form);
+		if ($scope.madlibFields.$valid) {
 			$scope.generated = true;
 		} else {
-
-			console.log("invalid, throw errors");
-			$scope.setPatternErrors(form.$error);
+			$scope.setPatternErrors($scope.madlibFields.hugeNumber.$error);
 		}
 	};
 
 	$scope.setPatternErrors = function ( errors ) {
 		var patternErrors = errors.pattern;
-
 		if (patternErrors) {
 			$scope.invalidHugeNumber=true;
 		}
 	};
-
-
-	$scope.copyFromForm = function ( form ) {
-		$scope.femaleName = form.femaleName.$viewValue;
-		$scope.jobTitle = form.jobTitle.$viewValue;
-		$scope.tediousTask = form.tediousTask.$viewValue;
-		$scope.dirtyTask = form.dirtyTask.$viewValue;
-		$scope.celebrity = form.celebrity.$viewValue;
-		$scope.uselessSkill = form.uselessSkill.$viewValue;
-		$scope.obnoxiousCelebrity = form.obnoxiousCelebrity.$viewValue;
-		$scope.hugeNumber = form.hugeNumber.$viewValue;
-		$scope.adjective = form.adjective.$viewValue;
-	};
-
 
 	$scope.generated = false;
 });

@@ -107,7 +107,7 @@
             <h1>Automate This!</h1>
         </section>
     </header>
-    <section id="inputs" ng-if="!generated">
+    <section id="inputs" ng-show="!generated">
         <div class="errors">
         </div>
         Provide the following words:
@@ -116,7 +116,7 @@
         <div class="errors">
             <div class="invalid-pattern" ng-if="invalidHugeNumber">Huge Number must be a Number</div>
         </div>
-        <form name="madlibFields" ng-submit="generateMadLib(madlibFields)" novalidate>
+        <form name="madlibFields" ng-submit="generateMadLib()" novalidate>
             <select required ng-model="gender">
                 <option value="">Select Gender</option>
                 <option value="female">Female</option>
@@ -144,7 +144,7 @@
             </div>
         </form>
     </section>
-    <section id="display" ng-if="generated">
+    <section id="display" ng-show="generated">
         <p>
             <span class="replace">{{femaleName || "\{\{female name\}\}"}}</span> was a
             <span class="replace">{{jobTitle || "\{\{job title\}\}"}}</span> who loved technology. Although {{gender=='male'?'he':'she'}} loved parts of {{gender=='male'?'his':'her'}} job, {{gender=='male'?'he':'she'}} absolutely hated
