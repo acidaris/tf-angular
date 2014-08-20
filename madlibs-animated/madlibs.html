@@ -106,61 +106,28 @@
             position: relative;
         }
 
-        /*.madlib.onscreen-remove {*/
-            /*-webkit-animation: 2s hide;*/
-            /*animation: 2s hide;*/
-        /*}*/
-
-        @keyframes hide {
-            from {
-                opacity: 1;
-                left: 0;
-            }
-            to {
-                opacity: 0;
-                left: -9000px;
-            }
-        }
-
-        @-webkit-keyframes hide {
-            from {
-                opacity: 1;
-                left: 0;
-            }
-            to {
-                opacity: 0;
-                left: -9000px;
-            }
-        }
-
-        /*.madlib.ng-hide-remove {*/
-        /*-webkit-animation: 0.5s showMadLib;*/
-        /*animation: 0.5s show;*/
-        /*}*/
-
         .replace.on-add {
-            -webkit-animation: all linear 5s;
-            animation: all linear 5s;
-        }
-
-        .replace.on-add {
-            opacity: 0;
-        }
-
-        .replace.on-add-active {
-            opacity: 1;
+            -webkit-animation: show 2s;
+            animation: show 2s;
         }
 
         .replace.on-add-stagger {
-        -webkit-transition-delay: .2s;
-        transition-delay: 0.2s;
-        -webkit-transition-duration: 0;
-        transition-duration: 0;
+            -webkit-animation-delay: .1s;
+            animation-delay: .1s;
+
+            /* yes we still need to do this too */
+            -webkit-animation-duration: 0;
+            animation-duration: 0;
         }
 
         @keyframes show {
             from {
                 opacity: 0;
+            }
+            80%
+            {
+                transform:scale(1);
+                opacity: 1;
             }
             to {
                 opacity: 1;
@@ -170,6 +137,10 @@
         @-webkit-keyframes show {
             from {
                 opacity: 0;
+            }
+            80% {
+                transform: scale(1.1);
+                opacity: 1;
             }
             to {
                 opacity: 1;
@@ -206,19 +177,19 @@
             <br/>
 
             <div class="input-fields">
-                <input type="text" required name="femaleName" ng-model="femaleName" placeholder="name"/>
-                <input type="text" required name="jobTitle" ng-model="jobTitle" placeholder="Job title"/>
-                <input type="text" required name="tediousTask" ng-model="tediousTask" placeholder="Tedious task"/>
+                <input type="text" required ng-model="name" placeholder="name"/>
+                <input type="text" required ng-model="jobTitle" placeholder="Job title"/>
+                <input type="text" required ng-model="tediousTask" placeholder="Tedious task"/>
             </div>
             <div class="input-fields">
-                <input type="text" required name="dirtyTask" ng-model="dirtyTask" placeholder="Dirty task"/>
-                <input type="text" required name="celebrity" ng-model="celebrity" placeholder="Celebrity"/>
-                <input type="text" required name="uselessSkill" ng-model="uselessSkill" placeholder="Useless skill"/>
+                <input type="text" required ng-model="dirtyTask" placeholder="Dirty task"/>
+                <input type="text" required ng-model="celebrity" placeholder="Celebrity"/>
+                <input type="text" required ng-model="uselessSkill" placeholder="Useless skill"/>
             </div>
             <div class="input-fields">
-                <input type="text" required name="obnoxiousCelebrity" ng-model="obnoxiousCelebrity" placeholder="Obnoxious celebrity"/>
-                <input type="text" required name="hugeNumber" ng-model="hugeNumber" placeholder="Huge number" ng-pattern="/[0-9]+/"/>
-                <input type="text" required name="adjective" ng-model="adjective" placeholder="Adjective"/>
+                <input type="text" required ng-model="obnoxiousCelebrity" placeholder="Obnoxious celebrity"/>
+                <input type="text" required ng-model="hugeNumber" placeholder="Huge number" ng-pattern="/[0-9]+/"/>
+                <input type="text" required ng-model="adjective" placeholder="Adjective"/>
             </div>
             <div id="split">
                 <input type="submit" value="Generate My Mad Lib"/>
@@ -227,22 +198,22 @@
     </section>
     <section class="madlib" id="display" ng-class="{offscreen:!generated,onscreen:generated}">
         <p>
-            <span class="replace" ng-class="{on:generated}">{{femaleName}}</span> was a
+            <span class="replace" ng-class="{on:generated}">{{name}}</span> was a
             <span class="replace" ng-class="{on:generated}">{{jobTitle}}</span> who loved technology. Although {{gender=='male'?'he':'she'}} loved parts of {{gender=='male'?'his':'her'}} job, {{gender=='male'?'he':'she'}} absolutely hated
             <span class="replace" ng-class="{on:generated}">{{tediousTask}}</span> and
             <span class="replace" ng-class="{on:generated}">{{dirtyTask}}</span>. So,
-            <span class="replace" ng-class="{on:generated}">{{femaleName}}</span> met with {{gender=='male'?'his':'her'}} life mentor
+            <span class="replace" ng-class="{on:generated}">{{name}}</span> met with {{gender=='male'?'his':'her'}} life mentor
             <span class="replace" ng-class="{on:generated}">{{celebrity}}</span> who told {{gender=='male'?'him':'her'}} to learn how to
             <span class="replace" ng-class="{on:generated}">{{uselessSkill}}</span> with Thinkful. Thinkful didn't offer a course on
             <span class="replace" ng-class="{on:generated}">{{uselessSkill}}</span> so {{gender=='male'?'he':'she'}} studied programming instead.
             <br/>
             <br/>
                                                                                   What a great decision! With {{gender=='male'?'his':'her'}} new skills,
-            <span class="replace" ng-class="{on:generated}">{{femaleName || "\{\{female name\}\}"}}</span> built a(n)
-            <span class="replace" ng-class="{on:generated}">{{adjective || "\{\{adjective\}\}"}}</span> robot named
-            <span class="replace" ng-class="{on:generated}">{{obnoxiousCelebrity || "\{\{obnoxious celebrity\}\}"}}</span> that not only loved
-            <span class="replace" ng-class="{on:generated}">{{dirtyTask || "\{\{dirty task\}\}"}}</span> but did it
-            <span class="replace" ng-class="{on:generated}">{{hugeNumber || "\{\{huge number\}\}"}}</span> times faster.
+            <span class="replace" ng-class="{on:generated}">{{name}}</span> built a(n)
+            <span class="replace" ng-class="{on:generated}">{{adjective}}</span> robot named
+            <span class="replace" ng-class="{on:generated}">{{obnoxiousCelebrity}}</span> that not only loved
+            <span class="replace" ng-class="{on:generated}">{{dirtyTask}}</span> but did it
+            <span class="replace" ng-class="{on:generated}">{{hugeNumber}}</span> times faster.
         </p>
 
         <form name="madlibsInputs" ng-submit="startOver()" novalidate>
