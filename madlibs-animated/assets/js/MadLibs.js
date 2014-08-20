@@ -1,14 +1,12 @@
-angular.module("myApp", ['ngAnimate']).controller("madlibs", function ( $scope ) {
+angular.module("myApp", ['ngAnimate']).controller("madlibs", function ($scope) {
 
-	$scope.invalidHugeNumber=false;
+    $scope.invalidHugeNumber = false;
 
-	$scope.startOver = function () {
-		$scope.generated = false;
-		$scope.clearFields();
-	};
+    $scope.startOver = function () {
+        $scope.clearFields();
+    };
 
-    $scope.loadFields = function()
-    {
+    $scope.loadFields = function () {
         $scope.name = 'Adam';
         $scope.jobTitle = 'lifeguard';
         $scope.tediousTask = 'teaching swim lessons';
@@ -18,43 +16,48 @@ angular.module("myApp", ['ngAnimate']).controller("madlibs", function ( $scope )
         $scope.obnoxiousCelebrity = 'Justin Beiber';
         $scope.hugeNumber = '15000';
         $scope.adjective = 'crusty';
-        $scope.gender = 'male';   
+        $scope.gender = 'male';
     };
-    
-	$scope.clearFields = function () {
-		$scope.name = '';
-		$scope.jobTitle = '';
-		$scope.tediousTask = '';
-		$scope.dirtyTask = '';
-		$scope.celebrity = '';
-		$scope.uselessSkill = '';
-		$scope.obnoxiousCelebrity = '';
-		$scope.hugeNumber = '';
-		$scope.adjective = '';
-		$scope.gender='';
-	};
 
-	$scope.clearFields();
+    $scope.clearFields = function () {
+        $scope.name = '';
+        $scope.jobTitle = '';
+        $scope.tediousTask = '';
+        $scope.dirtyTask = '';
+        $scope.celebrity = '';
+        $scope.uselessSkill = '';
+        $scope.obnoxiousCelebrity = '';
+        $scope.hugeNumber = '';
+        $scope.adjective = '';
+        $scope.gender = '';
+
+        $scope.generated = false;
+        $scope.submitted = false;
+    };
+
+    $scope.clearFields();
 
 
-	$scope.generateMadLib = function () {
+    $scope.generateMadLib = function () {
 
-		$scope.invalidHugeNumber = false;
+        $scope.submitted = true;
+        $scope.invalidHugeNumber = false;
 
-		if ($scope.madlibFields.$valid) {
-			$scope.generated = true;
-		} else {
-			$scope.setPatternErrors($scope.madlibFields.hugeNumber.$error);
-		}
-	};
+        if ($scope.madlibFields.$valid) {
+            $scope.generated = true;
+        } else {
+            $scope.setPatternErrors($scope.madlibFields.hugeNumber.$error);
+        }
+    };
 
-	$scope.setPatternErrors = function ( errors ) {
-		var patternErrors = errors.pattern;
-		if (patternErrors) {
-			$scope.invalidHugeNumber=true;
-		}
-	};
+    $scope.setPatternErrors = function (errors) {
+        var patternErrors = errors.pattern;
+        if (patternErrors) {
+            $scope.invalidHugeNumber = true;
+        }
+    };
 
-	$scope.generated = false;
+    $scope.clearFields();
+
 });
 

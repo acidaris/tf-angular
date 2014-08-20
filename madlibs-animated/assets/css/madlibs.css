@@ -90,7 +90,7 @@ section#inputs {
     box-shadow: 0 0 10px #9ecaed;
 }
 
-input.ng-invalid-required, select.ng-invalid-required {
+form.submitted input.ng-invalid-required, form.submitted select.ng-invalid-required {
     outline: none;
     border-color: #ED444C;
     box-shadow: 0 0 10px #ED444C;

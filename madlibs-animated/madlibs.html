@@ -24,7 +24,7 @@
         <div class="errors">
             <div class="invalid-pattern" ng-if="invalidHugeNumber">Huge Number must be a Number</div>
         </div>
-        <form name="madlibFields" ng-submit="generateMadLib()" novalidate>
+        <form ng-class="{submitted:submitted}" name="madlibFields" ng-submit="generateMadLib()" novalidate>
             <select required ng-model="gender">
                 <option value="">Select Gender</option>
                 <option value="female">Female</option>
