@@ -1,0 +1,47 @@
+<head>
+    <title>ngMadLibs</title>
+    <script type="text/javascript" src="../js/angular.min.js"></script>
+    <script type="text/javascript" src="../js/angular-animate.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/instagram.css">
+</head>
+<body ng-app="myApp">
+<div ng-controller="instagram" id="content">
+    <header>
+        <section id="title">
+            <img src="assets/images/ng-instagram.png"/>
+        </section>
+    </header>
+    <div id="search-form">
+        <form ng-submit="search()" name="searchForm" novalidate>
+            <input type="text" required ng-pattern="/^[a-zA-Z0-9]*$/" ng-model="tag" placeholder="search for a tag"/>
+            <input type="submit" value="Search"/>
+            <div class="error" ng-if="invalidTag">Invalid Tag</div>
+        </form>
+    </div>
+    <div id="search-message">
+        <span id="searching" ng-if="searchedFor && !searchFinished">Searching Instagram for photos tagged with for "{{searchedFor}}"</span>
+        <span id="resultsFound" ng-if="searchedFor && searchFinished">We found {{results.length}} results for "{{searchedFor}}"</span>
+    </div>
+
+    <div id="search-results" ng-class="{preview:showPreview}">
+        <div id="images">
+            <div class="image" ng-repeat="result in results" ng-click="selectImage($index)"
+                 ng-class="{paneled : !showPreview, left : showPreview,selected:$index==imageSelected}">
+                <img ng-src="{{result.images.thumbnail.url}}"/>
+            </div>
+        </div>
+        <div id="preview" ng-if="showPreview">
+            <img ng-src="{{results[imageSelected].images.standard_resolution.url}}"/>
+        </div>
+    </div>
+
+    <!--TODO: Loading image when searching (before results are returned)-->
+    <!--TODO: Refresh button to reload the same search already ran-->
+    <!--TODO: Images returned link to original in Instagram-->
+    <!--TODO: at least one animation-->
+    <!--TODO: click thumbnail, move all images to the left side and load larger version of image with link to instagram-->
+
+
+</div>
+<script type="text/javascript" src="assets/js/Instagram.js"></script>
+</body>

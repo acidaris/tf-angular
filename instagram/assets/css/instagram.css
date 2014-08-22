@@ -1,0 +1,60 @@
+div#content {
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+    margin-top: 80px;
+
+}
+
+div#search-form {
+    margin-left: auto;
+    margin-right: auto;
+    width: 200;
+}
+
+section#title {
+    width: 100%;
+    text-align: center;
+}
+
+div#search-results {
+    width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+}
+div#search-message
+{
+    text-align: center;
+}
+
+.image.paneled {
+    width: 33%;
+    float: left;
+}
+
+.preview #images {
+    /*height: 640px;*/
+    /*overflow: scroll;*/
+}
+
+div#search-results.preview {
+    width: 900px;
+    height: 640px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+div#preview{
+    margin-left: 200px;
+    position:fixed;
+    z-index:-1;
+}
+
+div#images {
+    float: left;
+}
+
+.error {
+    color: red;
+    text-align: center;
+}
