@@ -1,7 +1,12 @@
-angular.module("myApp", ['ngAnimate']).controller("instagram", function ($scope, $http) {
+angular.module("myApp", ['ngAnimate']).controller("instagram", function ($scope, $http,$timeout) {
 
     $scope.init = function () {
         $scope.results = {};
+    };
+
+    $scope.clear = function()
+    {
+        $scope.results.length=0;
         $scope.imageSelected = -1;
         $scope.showPreview = false;
         $scope.searchedFor = "";
@@ -10,20 +15,21 @@ angular.module("myApp", ['ngAnimate']).controller("instagram", function ($scope,
 
     $scope.init();
 
-
     $scope.search = function () {
 
         $scope.invalidTag = false;
 
         if ($scope.searchForm.$valid) {
-            $scope.init();
+            $scope.clear();
 
             $scope.searchedFor = $scope.tag;
             $scope.tag = "";
 
             $scope.getByTag($scope.searchedFor).success(function (response) {
-                $scope.results = response.data;
-                $scope.searchFinished = true;
+                $timeout(function () {
+                    $scope.results = response.data;
+                    $scope.searchFinished = true;
+                }, 200);
             });
         }
         else {
@@ -33,7 +39,6 @@ angular.module("myApp", ['ngAnimate']).controller("instagram", function ($scope,
 
     $scope.getByTag = function (tag) {
         var data = {params: {client_id: 'db7c48f92828445aa085817f2a961ebe', callback: 'JSON_CALLBACK'}};
-
 
         return $http.jsonp("https://api.instagram.com/v1/tags/" + tag + "/media/recent", data);
     };
@@ -69,7 +74,6 @@ angular.module("myApp", ['ngAnimate']).controller("instagram", function ($scope,
         }
         return '';
     };
-
 
 })
     .directive('imageonload', function () {

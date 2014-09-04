@@ -51,18 +51,7 @@ div#search-message
     /*overflow: scroll;*/
 }
 
-img.preview
-/*img.thumbnail*/
-{
-    opacity: 0;
-    transition:.5s all;
-}
 
-img.preview.loaded
-/*img.thumbnail.loaded*/
-{
-    opacity: 1;
-}
 
 div#images {
     float: left;
@@ -111,9 +100,21 @@ div.preview.ng-enter {
     transition: .75s linear all;
 
     opacity: 0;
-    line-height: 0;
 }
 
 div.preview.ng-enter.ng-enter-active {
+    opacity: 1;
+}
+
+img.preview,
+img.thumbnail
+ {
+    opacity: 0;
+    transition: .5s all;
+}
+
+img.preview.loaded,
+img.thumbnail.loaded
+ {
     opacity: 1;
 }
