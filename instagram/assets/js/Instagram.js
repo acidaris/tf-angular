@@ -4,8 +4,8 @@ angular.module("myApp", ['ngAnimate']).controller("instagram", function ($scope,
         $scope.results = {};
         $scope.imageSelected = -1;
         $scope.showPreview = false;
-        $scope.searchedFor="";
-        $scope.searchFinished=false;
+        $scope.searchedFor = "";
+        $scope.searchFinished = false;
     };
 
     $scope.init();
@@ -18,21 +18,20 @@ angular.module("myApp", ['ngAnimate']).controller("instagram", function ($scope,
         if ($scope.searchForm.$valid) {
             $scope.init();
 
-            $scope.searchedFor=$scope.tag;
-            $scope.tag="";
+            $scope.searchedFor = $scope.tag;
+            $scope.tag = "";
 
             $scope.getByTag($scope.searchedFor).success(function (response) {
                 $scope.results = response.data;
-                $scope.searchFinished=true;
+                $scope.searchFinished = true;
             });
         }
         else {
-            $scope.invalidTag=true;
+            $scope.invalidTag = true;
         }
     };
 
     $scope.getByTag = function (tag) {
-        //TODO: replace static search
         var data = {params: {client_id: 'db7c48f92828445aa085817f2a961ebe', callback: 'JSON_CALLBACK'}};
 
 
@@ -44,15 +43,47 @@ angular.module("myApp", ['ngAnimate']).controller("instagram", function ($scope,
         $scope.imageSelected = index;
     };
 
-    //TODO: validation
-    //TODO: get images
-    //TODO: Clear results and perform a new search
+    $scope.getThumbnailStyle = function (index) {
+        var style = {};
+
+        if ($scope.showPreview) {
+            style = {top: index * 150 + 'px', left: 0};
+        }
+        else {
+            style = {top: Math.floor(index / 3) * 150 + 'px', left: index % 3 * 150};
+        }
+
+        return style;
+    };
+    $scope.thumbnailColumnClass = function (index)
+    {
+        if (!$scope.showPreview) {
+            switch (index % 3) {
+                case 0:
+                    return 'col1';
+                case 1:
+                    return 'col2';
+                case 2:
+                    return 'col3';
+            }
+        }
+        return '';
+    };
 
 
-    //TODO: clear search field after request is made
-    //TODO: valid submit, display search criteria
-
-    //TODO: valid response, number of images found
-
-});
+})
+    .directive('imageonload', function () {
+        return {
+            restrict: 'A',
+            link: function (scope, element, attrs) {
+                element.bind('load', function () {
+                    element.addClass('loaded');
+                });
+                attrs.$observe('ngSrc', function (value) {
+                    element.removeClass('loaded');
+                });
+            }
+        };
+    });
+;
 

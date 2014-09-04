@@ -21,33 +21,47 @@ div#search-results {
     width: 450px;
     margin-left: auto;
     margin-right: auto;
+    transition: 0.25s width;
+    position: relative;
+    height: 640px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
+
+div#search-results.with-preview {
+    width: 900px;
+}
+
 div#search-message
 {
     text-align: center;
 }
 
-.image.paneled {
-    width: 33%;
-    float: left;
+.image {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    transition:1s all;
 }
+
+/*TODO: fix scrolling issue when page is shortened (by developer tools etc)*/
 
 .preview #images {
     /*height: 640px;*/
     /*overflow: scroll;*/
 }
 
-div#search-results.preview {
-    width: 900px;
-    height: 640px;
-    overflow-y: scroll;
-    overflow-x: hidden;
+img.preview
+/*img.thumbnail*/
+{
+    opacity: 0;
+    transition:.5s all;
 }
 
-div#preview{
-    margin-left: 200px;
-    position:fixed;
-    z-index:-1;
+img.preview.loaded
+/*img.thumbnail.loaded*/
+{
+    opacity: 1;
 }
 
 div#images {
@@ -57,4 +71,49 @@ div#images {
 .error {
     color: red;
     text-align: center;
+}
+
+/*image entering fade in */
+
+/*.image.ng-enter-stagger {*/
+    /* 200ms will be applied between each sucessive enter operation */
+    /*-webkit-transition-delay: 0.3s;*/
+    /*transition-delay: 0.3s;*/
+
+    /* this is here to avoid accidental CSS inheritance */
+    /*-webkit-transition-duration: 0;*/
+    /*transition-duration: 0;*/
+/*}*/
+
+.image.ng-enter {
+    /*-webkit-transition: .75s linear all;*/
+    /*transition: .75s linear all;*/
+
+    -webkit-transition-delay: 0.3s;
+    transition-delay: 0.3s;
+
+    /*opacity: 0;*/
+    /*line-height: 0;*/
+}
+
+.image.ng-enter.ng-enter-active {
+    opacity: 1;
+}
+
+div.preview {
+    margin-left: 200px;
+    position: fixed;
+    z-index: -1;
+}
+
+div.preview.ng-enter {
+    -webkit-transition: .75s linear all;
+    transition: .75s linear all;
+
+    opacity: 0;
+    line-height: 0;
+}
+
+div.preview.ng-enter.ng-enter-active {
+    opacity: 1;
 }
