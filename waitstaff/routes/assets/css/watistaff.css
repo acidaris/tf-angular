@@ -1,0 +1,89 @@
+div#content > h1 {
+    text-align: center;
+}
+
+div#content {
+    text-align: center;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    overflow: auto;
+}
+
+div#nav{
+    text-align: center;
+}
+div#nav li {
+    display: inline;
+    padding-left: 5px;
+}
+
+div#nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+div#nav li ~ li {
+    border-left: 2px solid black;
+}
+
+
+
+div#content > section {
+    padding: 10px;
+    border: 2px solid;
+}
+
+section#meal-details,
+section#customer-charges,
+section#earnings-info {
+    width: 300px;
+    margin: auto;
+    border: 3px solid black;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+section#customer-charges table {
+    margin-left: 20px;
+}
+
+section#earnings-info {
+    margin-top: 20px;
+}
+
+td.label, td.unit {
+    text-align: right;
+}
+
+td.unit {
+    font-size: 15pt;
+}
+
+header {
+    border-bottom: 2px solid;
+    text-align: center;
+}
+
+div#buttons {
+    text-align: center;
+    margin: 10px;
+    margin-top: 50px;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div#reset-btn {
+    text-align: center;
+}
+
+body {
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}

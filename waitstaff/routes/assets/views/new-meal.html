@@ -33,17 +33,21 @@
 <section id="customer-charges" ng-controller="customerCharges">
     <header>Customer Charges</header>
     <table>
-        <tr>
-            <td class="label">subtotal</td>
-            <td>{{subtotal | currency}}</td>
-        </tr>
-        <tr>
-            <td class="label">tip</td>
-            <td>{{tip | currency}}</td>
-        </tr>
-        <tr>
-            <td class="label">total</td>
-            <td>{{total | currency}}</td>
-        </tr>
+        <tbody>
+            <tr>
+                <td class="label">subtotal</td>
+                <td>{{subtotal | currency}}</td>
+            </tr>
+            <tr>
+                <td class="label">tip</td>
+                <td>{{tip | currency}}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="label">total</td>
+                <td>{{total | currency}}</td>
+            </tr>
+        </tfoot>
     </table>
 </section>

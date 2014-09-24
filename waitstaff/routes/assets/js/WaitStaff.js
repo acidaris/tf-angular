@@ -20,10 +20,38 @@ angular.module("waitStaff", ['ngRoute'])
     .controller('newMeal',function($scope){
 
     })
-    .controller('myEarnings', function($scope){
+    .factory('calc', function(){
+        return {
+            subtotal: function(mealBase, taxRate){
+                return mealBase + (mealBase * taxRate / 100);
+            },
+            tip: function(subTotal, tipPercent)
+            {
+                return subTotal * tipPercent / 100;
+            }
+        };
 
     })
-    .controller("mealDetails", function ( $scope, $rootScope ) {
+    .service('meals',function(){
+        var meals = [];
+
+        this.submitMeal = function(meal) {
+            meals.push(meal);
+        };
+        this.getMeals = function(){
+            return meals;
+        };
+        this.lastMeal = function(){
+            if(meals.length > 0) {
+                return meals[meals.length - 1];
+            }
+        };
+        this.clearMeals = function()
+        {
+            meals.length = 0;
+        };
+    })
+    .controller("mealDetails", function ( $scope, $rootScope, meals,calc) {
 
         $scope.init = function () {
             $scope.clearFields();
@@ -32,13 +60,13 @@ angular.module("waitStaff", ['ngRoute'])
         $scope.recordDetails = function () {
             if ($scope.details.$valid) {
 
-                var subtotal = $scope.mealBase + ($scope.mealBase * $scope.taxRate / 100);
+                var subtotal = calc.subtotal($scope.mealBase, $scope.taxRate);
 
                 var data = {
                     subtotal: subtotal,
                     tipPercent : $scope.tipPercent
                 };
-                $rootScope.$broadcast('mealSubmitted', data);
+                meals.submitMeal(data);
             } else {
                 console.log("invalid");
             }
@@ -57,7 +85,7 @@ angular.module("waitStaff", ['ngRoute'])
         $scope.init();
 
     })
-    .controller("customerCharges", function ( $scope ) {
+    .controller("customerCharges", function ( $scope, meals, calc) {
 
         $scope.init = function () {
             $scope.clearFields();
@@ -69,16 +97,19 @@ angular.module("waitStaff", ['ngRoute'])
             $scope.total = 0;
         };
 
+        $scope.$watchCollection(meals.getMeals, function () {
 
-        $scope.$on('mealSubmitted', function ( event, data ) {
+            var lastMeal = meals.lastMeal();
 
-            var subTotal = data.subtotal;
-            var tip = subTotal * data.tipPercent / 100;
-            var total = subTotal + tip;
+            if (lastMeal) {
+                var subTotal = lastMeal.subtotal;
+                var tip = calc.tip(subTotal,lastMeal.tipPercent);
+                var total = subTotal + tip;
 
-            $scope.subtotal += subTotal;
-            $scope.tip += tip;
-            $scope.total += total;
+                $scope.subtotal = subTotal;
+                $scope.tip = tip;
+                $scope.total = total;
+            }
         });
 
         $scope.$on('reset', function ( event, data ) {
@@ -89,7 +120,7 @@ angular.module("waitStaff", ['ngRoute'])
 
 
     })
-    .controller("myEarningInfo", function ( $scope ) {
+    .controller("myEarnings", function ( $scope, meals, calc) {
 
         $scope.init=function()
         {
@@ -103,11 +134,15 @@ angular.module("waitStaff", ['ngRoute'])
             $scope.averageTip = 0;
         };
 
-        $scope.$on('mealSubmitted', function ( event, data ) {
+        $scope.$watchCollection(meals.getMeals, function (meals) {
 
+            var tipTotal = 0;
 
-            $scope.tipTotal += data.subtotal * data.tipPercent / 100;
-            $scope.mealCount++;
+            angular.forEach(meals, function(meal){
+                tipTotal += calc.tip(meal.subtotal, meal.tipPercent);
+            });
+            $scope.tipTotal = tipTotal;
+            $scope.mealCount = meals.length;
 
         });
 
@@ -115,12 +150,11 @@ angular.module("waitStaff", ['ngRoute'])
             $scope.clearFields();
         });
 
-        $scope.init();
-    })
-    .controller("resetCtrl", function ( $scope, $rootScope ) {
         $scope.reset = function () {
-            $rootScope.$broadcast('reset', {});
+            meals.clearMeals();
         };
 
+        $scope.init();
     });
+
 
