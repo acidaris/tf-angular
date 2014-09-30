@@ -1,4 +1,4 @@
-angular.module("waitStaff", ['ngRoute'])
+angular.module("waitStaff", ['ngRoute','ngAnimate'])
     .config(function ($routeProvider) {
         $routeProvider.when('/', {
             templateUrl: './assets/views/home.html',
@@ -157,7 +157,6 @@ angular.module("waitStaff", ['ngRoute'])
         };
 
         $scope.init();
-    })
-    ;
+    });
 
 

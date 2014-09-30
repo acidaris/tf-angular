@@ -2,6 +2,7 @@
     <title>Waiter Earnings Calculator</title>
     <script type="text/javascript" src="/tf-angular/assets/js/angular.min.js"></script>
     <script type="text/javascript" src="/tf-angular/assets/js/angular-route.min.js"></script>
+    <script type="text/javascript" src="/tf-angular/assets/js/angular-animate.min.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/watistaff.css">
 
 </head>
@@ -15,7 +16,9 @@
            <li><a href="#/myEarnings">My Earnings</a></li>
        </ul>
     </div>
-    <div ng-view></div>
+    <div class="animate-view-container">
+        <div class="animate-view" ng-view></div>
+    </div>
     <!--TODO: Invalid values on submit displays errors-->
 
 </div>
