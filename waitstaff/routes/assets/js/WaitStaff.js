@@ -11,6 +11,8 @@ angular.module("waitStaff", ['ngRoute'])
             controller: 'myEarnings'
         }).when('/error', {
             template: '<p>Error Page Not Found</p>'
+        }).otherwise({
+            redirectTo: '/'
         });
 
     })
@@ -155,6 +157,7 @@ angular.module("waitStaff", ['ngRoute'])
         };
 
         $scope.init();
-    });
+    })
+    ;
 
 
