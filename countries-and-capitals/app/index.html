@@ -9,11 +9,12 @@
 </head>
 
 <body>
-<div class="navbar" ng-controller="TestController">
-    <a ng-click="testUrl()" href="#">Click</a>
+<div id="content" class="navbar">
+    <h1>Countries & Capitals</h1>
+
+    <div class="fade" ng-view></div>
 </div>
 
-<div class="fade" ng-view></div>
 
 <!-- build:js ./_assets/combined.js -->
 <script type="text/javascript" src="./bower_components/angular/angular.js"></script>
@@ -23,13 +24,15 @@
         <!--src="./bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>-->
 <script type="text/javascript" src="./assets/js/app.js"></script>
 <script type="text/javascript" src="./assets/js/controllers/TestController.js"></script>
+<script type="text/javascript" src="./assets/js/controllers/DetailController.js"></script>
+<script type="text/javascript" src="./assets/js/controllers/CountriesController.js"></script>
 <script type="text/javascript" src="./assets/js/services/geoRequest.js"></script>
 <script type="text/javascript" src="./assets/js/services/neighbors.js"></script>
+<script type="text/javascript" src="./assets/js/services/countryInfo.js"></script>
+<script type="text/javascript" src="./assets/js/services/countryCapital.js"></script>
+<script type="text/javascript" src="./assets/js/services/getInfo.js"></script>
 <!-- endbuild -->
 <!--TODO: Service for loading state-->
-<!--TODO: service for getting list of countries-->
-<!--TODO: Neighbors service (use neightborsJSON?geonameId={}&username={}-->
-<!--TODO: Country Info service (http://api.geonames.org/countryInfoJSON?username=demo)-->
 </body>
 </html>
 

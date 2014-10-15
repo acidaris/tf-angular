@@ -1,0 +1,26 @@
+div#content > h1 {
+    text-align: center;
+}
+
+div#content {
+    text-align: center;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    overflow: auto;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+}
+
+td {
+    outline: thin solid black;
+}
+
+tbody tr {
+    outline: thin solid black;
+}
