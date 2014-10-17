@@ -11,16 +11,78 @@ div#content {
     overflow: auto;
 }
 
-table {
+table#countries {
     margin-left: auto;
     margin-right: auto;
     border: 1px solid black;
 }
 
-td {
+#countries td {
     outline: thin solid black;
 }
 
-tbody tr {
+#countries tbody tr {
     outline: thin solid black;
+    cursor: pointer;
+
 }
+
+#countries tbody tr:hover {
+    background-color: lightblue;
+}
+
+table.details {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+table.nav {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+img#map {
+    width: auto;
+    height: auto;
+    max-width: 200px;
+    max-height: 200px;
+}
+
+img#flag {
+    width: 200px;
+    max-height: 100px;
+}
+
+span.neighbor-link {
+    margin: 2px;
+}
+
+div.country-details {
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+}
+
+h1#name {
+    padding-left: 100px;
+}
+
+td.right {
+    text-align: right;
+}
+
+td.left {
+    text-align: left;
+}
+
+table.details tr td {
+    max-width: 200px;
+}
+
+table.nav tr td {
+    width: 200px;
+}
+
