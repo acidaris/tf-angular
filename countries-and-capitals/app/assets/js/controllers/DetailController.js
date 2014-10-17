@@ -1,37 +1,86 @@
 angular.module('countriesAndCapitals').controller('DetailController',
-  ['$scope', 'countryCode', 'countryInfo', 'countryCapital', 'getInfo','neighbors','$location','$timeout',
-    function ($scope, countryCode, countryInfo, countryCapital, getInfo, neighbors ,$location, $timeout) {
+    ['$scope', '$q','countryCode', 'countryInfo', 'countryCapital', 'getInfo', 'neighbors', '$location', '$timeout',
+      function($scope, $q, countryCode, countryInfo, countryCapital, getInfo, neighbors, $location, $timeout) {
 
-      var countrySuccess = function (data) {
-        $scope.country = data;
-        countryCapital(countryCode, data.capital).then(capitalSuccess);
-        neighbors(data.geonameId).then(neighborsSuccess);
-      };
+        /**
+         * get a country by the 2 character country code.
+          * @param countryCode
+         * @returns {*} promise
+         */
+        var getCountry = function(countryCode) {
+          return countryInfo.byCode(countryCode).then(function(data) {
+                $scope.country = data;
+                return data;
+              });
+        };
 
-      var capitalSuccess = function (data) {
-        $scope.capital = data;
-        getInfo(data.geonameId).then(capitalInfoSuccess);
-      };
+        /**
+         * get a country's capital city
+         * @param country
+         * @returns {*} promise
+         */
+        var getCapitalCity = function(country) {
+          return countryCapital(countryCode, country.capital).then(function(data) {
+            $scope.capital = data;
+            return data;
+          });
+        };
 
-      var capitalInfoSuccess = function (data) {
-        var elapsedTime = new Date().getTime() - startTime;
 
-        $scope.capitalInfo = data;
-        $timeout(function(){
-          $scope.loading = false;
-        },elapsedTime>500? 1:500-elapsedTime);
-      };
+        /**
+         * gets a country's neighbors
+         * @param country
+         * @returns {*} promise
+         */
+        var getNeighbors = function(country) {
+          return neighbors(country.geonameId)
+              .then(function(data) {
+                $scope.neighbors = data;
+                return data;
+              });
+        };
 
-      var neighborsSuccess = function (data) {
-        $scope.neighbors = data;
-      };
+        /**
+         * Get a capital cities
+         * @param responses return value of earlier chained responses [getCapitalCity,getNeighbors]
+         * @returns {*}
+         */
+        var getCapitalInfo = function(responses) {
+          debugger;
+          return getInfo(responses[0].geonameId).then(capitalInfoSuccess);
+        };
 
-      var startTime = new Date().getTime();
-      countryInfo.byCode(countryCode).then(countrySuccess);
-      $scope.loading = true;
+        /**
+         * Success function for getCapitalInfo.  This is the end of the promise chain, so the
+         * loading flag will be cleared here.
+         * @param data response from getInfo;
+         */
+        var capitalInfoSuccess = function(data) {
+          var elapsedTime = new Date().getTime() - startTime;
+          $scope.capitalInfo = data;
+          $timeout(function() {
+            $scope.loading = false;
+          }, elapsedTime > 500 ? 1 : 500 - elapsedTime);
+        };
 
-      $scope.nav = function (path) {
-        $location.path(path);
-      };
+        $scope.loading = true;
+        var startTime = new Date().getTime();
 
-    }]);
+          getCountry(countryCode)
+            .then(function(country){
+              $q.all([
+                getCapitalCity(country),
+                getNeighbors(country)
+              ])
+                  .then(getCapitalInfo);
+            });
+
+        /**
+         * Nagivate to the supplied path route.
+         * @param {string} path
+         */
+        $scope.nav = function(path) {
+          $location.path(path);
+        };
+
+      }]);
