@@ -20,7 +20,7 @@ describe("countryCapital service", function() {
     deferred = _$q_.defer();
     $rootScope = _$rootScope_;
 
-    mockGeoRequest.andReturn(deferred.promise);
+    mockGeoRequest.and.returnValue(deferred.promise);
   }));
 
   describe("countryCapital() function", function() {

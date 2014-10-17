@@ -18,7 +18,7 @@ describe("countryInfo service", function() {
     deferred = _$q_.defer();
     $rootScope = _$rootScope_;
 
-    mockGeoRequest.andReturn(deferred.promise);
+    mockGeoRequest.and.returnValue(deferred.promise);
 
   }));
 
@@ -41,7 +41,7 @@ describe("countryInfo service", function() {
 
       expect(mockGeoRequest).toHaveBeenCalled();
 
-      mockGeoRequest.reset();
+      mockGeoRequest.calls.reset();
 
       countryInfo.list();
       expect(mockGeoRequest).not.toHaveBeenCalled();

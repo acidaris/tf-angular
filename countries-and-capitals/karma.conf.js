@@ -20,7 +20,8 @@ module.exports = function(config) {
       './bower_components/angular-animate/angular-animate.js',
       './bower_components/angular-route/angular-route.js',
       './app/**/*.spec.js',
-      './app/**/*.js'
+      './app/**/*.js',
+      './app/assets/**/*.html'
     ],
 
 
@@ -32,6 +33,12 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors : {
+        './app/assets/**/*.html' : 'html2js'
+    },
+
+    ngHtml2JsPreprocessor : {
+      stripPrefix : 'app/',
+      prependPrefix : './'
     },
 
 
@@ -51,7 +58,7 @@ module.exports = function(config) {
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel : config.LOG_INFO,
+    logLevel : config.LOG_DEBUG,
 
 
     // enable / disable watching file and executing tests whenever any file changes
