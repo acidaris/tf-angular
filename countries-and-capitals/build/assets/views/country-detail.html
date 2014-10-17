@@ -1,0 +1,52 @@
+<div ng-show="loading" class="loading"></div>
+<div ng-show="!loading" class="country-details">
+  <h1 id="name">{{country.isoAlpha3}}</h1>
+  <table class="details">
+    <tbody>
+    <tr>
+      <td class="right">Population of Country:</td>
+      <td class="left">{{country.population | number}}</td>
+    </tr>
+    <tr>
+      <td class="right">Area:</td>
+      <td class="left">{{country.areaInSqKm | number}} square km</td>
+    </tr>
+    <tr>
+      <td class="right">Capital:</td>
+      <td class="left">{{capital.toponymName}}</td>
+    </tr>
+    <tr>
+      <td class="right">Capital:</td>
+      <td class="left">{{capitalInfo.population | number}}</td>
+    </tr>
+    <tr>
+      <td class="right">{{neighbors.totalResultsCount}} Neighbors:</td>
+      <td>
+      <span ng-repeat="neighbor in neighbors.geonames" class="neighbor-link">
+        <a ng-href="{{'#/countries/'+neighbor.countryCode+'/capital'}}">
+          {{neighbor.countryName}}
+        </a>
+      </span>
+      </td>
+    </tr>
+    <tr>
+      <td class="right">
+        <img fade-on-load ng-if="country.countryCode" class="flag" ng-src="{{'http://www.geonames.org/flags/x/'+ ( country.countryCode | lowercase) +'.gif'}}"/>
+
+      </td>
+      <td class="left">
+        <img fade-on-load ng-if="country.countryCode" class="map" ng-src="{{'http://www.geonames.org/img/country/250/'+ ( country.countryCode | uppercase) +'.png'}}"/>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <table class="nav">
+    <tr>
+      <td class="right"><button ng-click="nav('/')">Home</button></td>
+      <td class="left"><button ng-click="nav('/countries')">Browse Countries</button></td>
+    </tr>
+  </table>
+</div>
+
+
+
