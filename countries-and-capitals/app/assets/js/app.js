@@ -1,10 +1,9 @@
 angular.module('cacService', []);
 angular.module('countriesAndCapitals', ['cacService', 'ngRoute'])
-  .config(function ($routeProvider) {
+  .config(['$routeProvider',function ($routeProvider) {
     $routeProvider.when('/', {
       controller: 'HomeController',
       templateUrl: './assets/views/home.html'
-//        controller: 'HomeCtrl'
     }).when('/countries', {
       templateUrl: './assets/views/countries.html',
       controller: 'CountriesController'
@@ -12,14 +11,9 @@ angular.module('countriesAndCapitals', ['cacService', 'ngRoute'])
       templateUrl: './assets/views/country-detail.html',
       controller: 'DetailController',
       resolve: {
-        countryCode: function ($route, $location) {
-          var countryCode = $route.current.params.country;
-//            if (owmCities.indexOf(city) == -1) {
-//              $location.path('/error');
-//              return;
-//            }
-          return countryCode;
-        }
+        countryCode:['$route','$location',function ($route) {
+          return $route.current.params.country;
+        }]
       }
     }).when('/error', {
       template: '<p>Error Page Not Found</p>'
@@ -30,5 +24,5 @@ angular.module('countriesAndCapitals', ['cacService', 'ngRoute'])
       redirectTo: '/'
     });
 
-  });
+  }]);
 

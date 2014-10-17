@@ -1,4 +1,4 @@
-<div ng-show="loading">Loading</div>
+<div ng-show="loading" class="loading"></div>
 <div ng-show="!loading" class="country-details">
   <h1 id="name">{{country.isoAlpha3}}</h1>
   <table class="details">
@@ -31,11 +31,11 @@
     </tr>
     <tr>
       <td class="right">
-        <img ng-if="country.countryCode" id="flag" ng-src="{{'http://www.geonames.org/flags/x/'+ ( country.countryCode | lowercase) +'.gif'}}"/>
+        <img fade-on-load ng-if="country.countryCode" class="flag" ng-src="{{'http://www.geonames.org/flags/x/'+ ( country.countryCode | lowercase) +'.gif'}}"/>
 
       </td>
       <td class="left">
-        <img ng-if="country.countryCode" id="map" ng-src="{{'http://www.geonames.org/img/country/250/'+ ( country.countryCode | uppercase) +'.png'}}"/>
+        <img fade-on-load ng-if="country.countryCode" class="map" ng-src="{{'http://www.geonames.org/img/country/250/'+ ( country.countryCode | uppercase) +'.png'}}"/>
       </td>
     </tr>
     </tbody>

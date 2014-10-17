@@ -1,5 +1,6 @@
 angular.module('countriesAndCapitals')
-    .controller('TestController', ['$scope', 'neighbors', 'countryInfo', function ($scope, neighbors,countryInfo) {
+  .controller('TestController', ['$scope', 'neighbors', 'countryInfo',
+    function ($scope, neighbors, countryInfo) {
       $scope.testUrl = function () {
         neighbors(6252001);
       };

@@ -1,26 +1,29 @@
-<table id="countries">
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Country Code</th>
-    <th>Capital</th>
-    <th>Area in km</th>
-    <th>Population</th>
-    <th>continent</th>
-  </tr>
+<div ng-show="loading" ng-class="{loading: loading}"></div>
+<div ng-show="!loading">
+  <table id="countries">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Country Code</th>
+      <th>Capital</th>
+      <th>Area in km</th>
+      <th>Population</th>
+      <th>continent</th>
+    </tr>
 
-  </thead>
-  <tbody>
-  <tr ng-click="clickCountry(country)" ng-repeat="country in countries.list">
-    <td>{{country.countryName}}</td>
-    <td>{{country.countryCode}}</td>
-    <td>{{country.capital}}</td>
-    <td>{{country.areaInSqKm | number}}</td>
-    <td>{{country.population | number}}</td>
-    <td>{{country.continent}}</td>
-  </tr>
-  </tbody>
+    </thead>
+    <tbody>
+    <tr ng-click="clickCountry(country)" ng-repeat="country in countries.list">
+      <td>{{country.countryName}}</td>
+      <td>{{country.countryCode}}</td>
+      <td>{{country.capital}}</td>
+      <td>{{country.areaInSqKm | number}}</td>
+      <td>{{country.population | number}}</td>
+      <td>{{country.continent}}</td>
+    </tr>
+    </tbody>
 
-</table>
+  </table>
 
-<button ng-click="nav('/')">Home</button>
+  <button ng-click="nav('/')">Home</button>
+</div>
