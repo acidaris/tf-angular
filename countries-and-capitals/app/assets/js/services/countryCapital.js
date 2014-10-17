@@ -17,6 +17,5 @@ angular.module('cacService')
         });
 
         return defer.promise;
-
       };
     }]);

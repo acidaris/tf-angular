@@ -20,7 +20,6 @@ angular.module('cacService')
           defer.resolve(countryList);
         }
 
-
         return defer.promise;
       };
 

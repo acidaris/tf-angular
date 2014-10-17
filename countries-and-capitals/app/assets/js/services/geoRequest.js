@@ -7,8 +7,8 @@ angular.module('cacService')
         $http.get(GEO_PREFIX + path)
           .success(function (data) {
             defer.resolve(data);
-          }).error(function () {
-            defer.reject();
+          }).error(function (errorResponse) {
+            defer.reject(errorResponse);
           });
 
         return defer.promise;
