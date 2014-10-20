@@ -46,7 +46,6 @@ angular.module('countriesAndCapitals').controller('DetailController',
          * @returns {*}
          */
         var getCapitalInfo = function(responses) {
-          debugger;
           return getInfo(responses[0].geonameId).then(capitalInfoSuccess);
         };
 
@@ -66,13 +65,15 @@ angular.module('countriesAndCapitals').controller('DetailController',
         $scope.loading = true;
         var startTime = new Date().getTime();
 
+        /**
+         * Get all data for the country / capital.
+         */
           getCountry(countryCode)
             .then(function(country){
               $q.all([
                 getCapitalCity(country),
                 getNeighbors(country)
-              ])
-                  .then(getCapitalInfo);
+              ]).then(getCapitalInfo);
             });
 
         /**
