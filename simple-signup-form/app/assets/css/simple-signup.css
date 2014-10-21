@@ -1,0 +1,38 @@
+.brand-logo{
+  width: 300px;
+  height: 200px;
+  background-size: 300px, 200px;
+  background-image: url('./images/cowboy.png');
+}
+
+.opt-in {
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.opt-in .form-content{
+  width:300px;
+  float:right;
+}
+
+
+div.opt-in .optional-content {
+  width: 300px;
+  height: 200px;
+  float:left;
+}
+
+div#content > h1 {
+  text-align: center;
+}
+
+
+div#content {
+  text-align: center;
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  overflow: auto;
+}
