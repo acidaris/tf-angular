@@ -4,4 +4,4 @@ angular.module('SimpleSignup.optIn',[]).directive('optIn',function(){
     transclude:true,
     templateUrl:"./assets/partials/opt-in.html"
   };
-})
+});
