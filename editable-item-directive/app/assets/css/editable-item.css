@@ -1,26 +1,33 @@
-.brand-logo{
-  width: 300px;
-  height: 200px;
-  background-size: 300px, 200px;
-  background-image: url('./images/cowboy.png');
-}
-
-.opt-in {
+.make-editable {
+  display:block;
   width: 600px;
   margin-left: auto;
   margin-right: auto;
 }
 
-div.opt-in .form-content{
-  width:300px;
-  float:right;
+div.make-editable .content{
+  width: 90%;
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.make-editable .content.editable p {
+  background-color: antiquewhite;
 }
 
 
-div.opt-in .optional-content {
-  width: 300px;
-  height: 200px;
-  float:left;
+div.make-editable .controls {
+  width: 100%;
+  margin-left: auto;
+  background-color: aliceblue;
+  display:block;
+  text-align: right;
+}
+
+div.make-editable .controls button {
+
 }
 
 div#content > h1 {
@@ -30,7 +37,7 @@ div#content > h1 {
 
 div#content {
   text-align: center;
-  width: 600px;
+  width: 1200px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 50px;
