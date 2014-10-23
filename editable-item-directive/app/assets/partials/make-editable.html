@@ -2,7 +2,6 @@
   <div class="controls">
     <button ng-if="!editable" ng-click="edit()">Edit</button>
     <button ng-if="editable" ng-click="save()">Save</button>
-    <!--TODO: Only display one button when editable-->
     <!--TODO: $compile and make executable??-->
   </div>
   <div class="content" contenteditable="{{editable}}" ng-class="{editable: editable}" ng-transclude></div>
