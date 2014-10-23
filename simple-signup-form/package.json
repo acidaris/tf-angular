@@ -1,7 +1,7 @@
 {
-  "name": "countries-and-capitals",
+  "name": "simple-signup-forum",
   "version": "0.0.0",
-  "description": "Thinkful Countries and Capitals Project.",
+  "description": "Thinkful Simple Signup Director Project.",
   "repository": "https://github.com/acidaris/tf-angular",
   "author": "Adam Greenfield",
   "main": "gulpfile.js",
